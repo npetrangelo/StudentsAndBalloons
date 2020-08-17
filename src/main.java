@@ -9,8 +9,8 @@ public class main {
         ArrayList<Integer> balloons = new ArrayList<>();
         ArrayList<Person> people = new ArrayList<>();
         for (int i = 0; i < numStudents; i++) {
-            balloons.set(i,i);
-            people.set(i, new Person(i));
+            balloons.add(i);
+            people.add(new Person(i));
         }
 
         int numAdvances = 0;
@@ -27,7 +27,8 @@ public class main {
 
         for (int i = 0; i < people.size(); i++) {
             ArrayList<Person> temp = new ArrayList<>(people);
-            temp.removeIf(p -> p.number != balloons.size());
+            int balloon = balloons.get(i);
+            temp.removeIf(p -> p.number != balloon);
             Person match = temp.get(0);
             if (Math.abs(people.indexOf(match) - i) <= distance) {
                 match.done = true;
