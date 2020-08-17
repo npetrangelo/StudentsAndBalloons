@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class main {
     public static void main(String[] args) {
-
+        System.out.println(simulate(1000,0));
     }
 
     public static int simulate(int numStudents, int numFriends) {
