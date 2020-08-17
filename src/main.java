@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) {
@@ -6,8 +7,8 @@ public class main {
     }
 
     public static int simulate(int numStudents, int numFriends) {
-        ArrayList<Integer> balloons = new ArrayList<>();
-        ArrayList<Person> people = new ArrayList<>();
+        List<Integer> balloons = new ArrayList<>();
+        List<Person> people = new ArrayList<>();
         for (int i = 0; i < numStudents; i++) {
             balloons.add(i);
             people.add(new Person(i));
@@ -21,12 +22,12 @@ public class main {
         return numAdvances;
     }
 
-    public static void advance(ArrayList<Person> people, ArrayList<Integer> balloons, int distance) {
+    public static void advance(List<Person> people, List<Integer> balloons, int distance) {
         shuffle(people);
         shuffle(balloons);
 
         for (int i = 0; i < people.size(); i++) {
-            ArrayList<Person> temp = new ArrayList<>(people);
+            List<Person> temp = new ArrayList<>(people);
             int balloon = balloons.get(i);
             temp.removeIf(p -> p.number != balloon);
             Person match = temp.get(0);
@@ -39,7 +40,7 @@ public class main {
         balloons.removeIf(p -> p == null);
     }
 
-    public static void shuffle(ArrayList list) {
+    public static void shuffle(List list) {
         for (int i = list.size() - 1; i > 0; i--) {
             int j = (int) (Math.random() * (i + 1));
             Object oldI = list.set(i,list.get(j));
