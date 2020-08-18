@@ -2,11 +2,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsAndBalloons {
+	private int numStudents;
+	private int numFriends;
+	private int numRuns;
+
     public static void main(String[] args) {
-        System.out.println(simulate(1000,0));
+        int numStudents = 1000;
+        int numFriends = 0;
+        int numRuns = 1;
+
+        StudentsAndBalloons sab = new StudentsAndBalloons(numStudents, numFriends, numRuns);
+        System.out.println(sab.simulate());
     }
 
-    public static int simulate(int numStudents, int numFriends) {
+    StudentsAndBalloons(int numStudents, int numFriends, int numRuns) {
+        this.numStudents = numStudents;
+        this.numFriends = numFriends;
+        this.numRuns = numRuns;
+    }
+
+    public int simulate() {
         List<Integer> balloons = new ArrayList<>();
         List<Person> people = new ArrayList<>();
         for (int i = 0; i < numStudents; i++) {
@@ -22,7 +37,7 @@ public class StudentsAndBalloons {
         return numAdvances;
     }
 
-    public static void advance(List<Person> people, List<Integer> balloons, int distance) {
+    public void advance(List<Person> people, List<Integer> balloons, int distance) {
         shuffle(people);
         shuffle(balloons);
 
@@ -38,7 +53,7 @@ public class StudentsAndBalloons {
         balloons.removeIf(p -> p == null);
     }
 
-    public static <E> void shuffle(List<E> list) {
+    public <E> void shuffle(List<E> list) {
         for (int i = list.size() - 1; i > 0; i--) {
             int j = (int) (Math.random() * (i + 1));
             E oldI = list.set(i,list.get(j));
