@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class main {
+public class StudentsAndBalloons {
     public static void main(String[] args) {
         System.out.println(simulate(1000,0));
     }
@@ -38,10 +38,10 @@ public class main {
         balloons.removeIf(p -> p == null);
     }
 
-    public static void shuffle(List list) {
+    public static <E> void shuffle(List<E> list) {
         for (int i = list.size() - 1; i > 0; i--) {
             int j = (int) (Math.random() * (i + 1));
-            Object oldI = list.set(i,list.get(j));
+            E oldI = list.set(i,list.get(j));
             list.set(j, oldI);
         }
     }
