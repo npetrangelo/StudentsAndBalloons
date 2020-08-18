@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StudentsAndBalloons {
     public static void main(String[] args) {
@@ -35,7 +36,7 @@ public class StudentsAndBalloons {
             }
         }
         people.removeIf(p -> p.done);
-        balloons.removeIf(p -> p == null);
+        balloons.removeIf(Objects::isNull);
     }
 
     public static <E> void shuffle(List<E> list) {
