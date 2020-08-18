@@ -29,8 +29,8 @@ public class StudentsAndBalloons {
 
         for (int i = 0; i < people.size(); i++) {
             int balloon = balloons.get(i);
-            Person match = people.stream().filter(p -> p.number == balloon).findAny().get();
-            if (Math.abs(people.indexOf(match) - i) <= distance) {
+            Person match = people.stream().filter(p -> p.number == balloon).findAny().orElse(null);
+            if (Objects.nonNull(match) && Math.abs(people.indexOf(match) - i) <= distance) {
                 match.done = true;
                 balloons.set(i, null);
             }
