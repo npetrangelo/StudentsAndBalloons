@@ -4,21 +4,21 @@ import java.util.Objects;
 
 public class StudentsAndBalloons {
 	private int numStudents;
-	private int numFriends;
+	private int friendDistance;
 	private int numRuns;
 
     public static void main(String[] args) {
         int numStudents = 1000;
-        int numFriends = 0;
+        int friendDistance = 0;
         int numRuns = 1;
 
-        StudentsAndBalloons sab = new StudentsAndBalloons(numStudents, numFriends, numRuns);
+        StudentsAndBalloons sab = new StudentsAndBalloons(numStudents, friendDistance, numRuns);
         System.out.println(sab.simulate());
     }
 
-    StudentsAndBalloons(int numStudents, int numFriends, int numRuns) {
+    StudentsAndBalloons(int numStudents, int friendDistance, int numRuns) {
         this.numStudents = numStudents;
-        this.numFriends = numFriends;
+        this.friendDistance = friendDistance;
         this.numRuns = numRuns;
     }
 
@@ -32,20 +32,20 @@ public class StudentsAndBalloons {
 
         int numAdvances = 0;
         while (people.size() > 0) {
-            advance(people, balloons, numFriends);
+            advance(people, balloons);
             numAdvances++;
         }
         return numAdvances;
     }
 
-    public void advance(List<Person> people, List<Integer> balloons, int distance) {
+    public void advance(List<Person> people, List<Integer> balloons) {
         shuffle(people);
         shuffle(balloons);
 
         for (int i = 0; i < people.size(); i++) {
             int balloon = balloons.get(i);
             Person match = people.stream().filter(p -> p.number == balloon).findAny().orElse(null);
-            if (Objects.nonNull(match) && Math.abs(people.indexOf(match) - i) <= distance) {
+            if (Objects.nonNull(match) && Math.abs(people.indexOf(match) - i) <= friendDistance) {
                 match.done = true;
                 balloons.set(i, null);
             }
