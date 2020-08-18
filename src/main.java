@@ -27,10 +27,8 @@ public class main {
         shuffle(balloons);
 
         for (int i = 0; i < people.size(); i++) {
-            List<Person> temp = new ArrayList<>(people);
             int balloon = balloons.get(i);
-            temp.removeIf(p -> p.number != balloon);
-            Person match = temp.get(0);
+            Person match = people.stream().filter(p -> p.number == balloon).findAny().get();
             if (Math.abs(people.indexOf(match) - i) <= distance) {
                 match.done = true;
                 balloons.set(i, null);
